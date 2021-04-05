@@ -12,13 +12,12 @@ public class GerenciadorCliente {
 
         DatagramSocket socket = new DatagramSocket();
         socket.setBroadcast(true);
-        InetAddress ipServidor = InetAddress.getByName("10.0.0.255");
+        InetAddress ipServidor = InetAddress.getByName("255.255.255.255");
 
         System.out.println("Iniciando Aplicação Cliente!");
 
         String msg = "::Quem está disponível?";
-        byte[] requisicaoServidor;
-        requisicaoServidor = msg.getBytes();
+        byte[] requisicaoServidor = msg.getBytes();
         DatagramPacket envelopeAEnviar = new DatagramPacket(requisicaoServidor, requisicaoServidor.length, ipServidor, 5000);
         socket.send(envelopeAEnviar);
         System.out.println("Conexão Concluida");
@@ -69,12 +68,12 @@ public class GerenciadorCliente {
     }
 
     public static void solicitarRegistroEmServidor(DatagramSocket socket, InetAddress ip) throws IOException {
-        byte[] respostaDoServidor = new byte[1024];
+        /**byte[] respostaDoServidor = new byte[1024];
         System.out.println("Servidores Disponíveis: ");
         DatagramPacket envelopeAReceber = new DatagramPacket(respostaDoServidor, respostaDoServidor.length);
         socket.receive(envelopeAReceber);
         String msgRecebida = new String(envelopeAReceber.getData()).trim();
-        System.out.println(msgRecebida);
+        System.out.println(msgRecebida);**/
 
         Random random = new Random();
         int indice = random.nextInt(servidoresOnline().size());
